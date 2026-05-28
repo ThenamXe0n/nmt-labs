@@ -24,6 +24,8 @@ import {
 import { FaReact, FaNodeJs } from "react-icons/fa";
 import { SiMongodb, SiTailwindcss } from "react-icons/si";
 import { BsDiscord } from "react-icons/bs";
+import TechStrip from "../../ui/TechStrip";
+import Tracks from "../../ui/Tracks";
 
 /* ─── Font Loader ───────────────────────────────────────────── */
 const FontLoader = () => {
@@ -118,7 +120,7 @@ function Hero() {
   ];
 
   return (
-    <section className="bg-black py-20 md:py-28 border-b border-gray-800 relative overflow-hidden">
+    <section className="bg-black py-2 border-b border-gray-800 relative overflow-hidden">
       {!isTablet && (
         <div className="absolute right-8 top-4 text-[180px] md:text-[320px] font-black text-gray-900 select-none pointer-events-none font-serif tracking-[-0.05em]">
           01
@@ -206,14 +208,7 @@ function Hero() {
         )}
 
         <div className="nmt-fade-up flex gap-8 overflow-x-auto pb-6 mt-20 border-t border-gray-800 pt-8 scrollbar-hide">
-          {techs.map((tech, i) => (
-            <span
-              key={i}
-              className="text-sm text-gray-500 whitespace-nowrap px-5 border-r border-gray-800 last:border-none"
-            >
-              {tech}
-            </span>
-          ))}
+          <TechStrip techs={techs} />
         </div>
       </div>
     </section>
@@ -296,8 +291,6 @@ function Ideology() {
    WHAT WE DO
 ═══════════════════════════════════════════════════════════════ */
 function WhatWeDo() {
-  const { isMobile } = useBreakpoint();
-
   const features = [
     {
       Icon: FiBook,
@@ -358,15 +351,15 @@ function WhatWeDo() {
   ];
 
   return (
-    <section className="bg-[#F3F0EB] py-20 md:py-24">
-      <div className="max-w-6xl mx-auto px-6 lg:px-8">
+    <section className="bg-[#000000] ">
+      <div className="max-w-6xl mx-auto px-6 pb-20 lg:px-8">
         <AnimSection>
           <div className="flex flex-col md:flex-row justify-between items-end gap-6 mb-12">
             <div>
               <span className="uppercase text-xs font-semibold tracking-widest text-[#E8500A]">
                 What we offer
               </span>
-              <h2 className="text-4xl md:text-5xl font-black text-black leading-tight mt-2">
+              <h2 className="text-4xl md:text-5xl font-black text-white leading-tight mt-2">
                 Eight reasons to
                 <br />
                 stop switching tabs.
@@ -385,35 +378,36 @@ function WhatWeDo() {
           </div>
         </AnimSection>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-6">
           {features.map((f, i) => (
             <AnimSection key={i} delay={i * 0.04}>
-              <div className="bg-white border border-gray-200 rounded p-8 h-full hover:border-[#E8500A]/30 transition-all group">
-                <div className="flex justify-between items-start mb-8">
-                  <div
-                    className={`w-12 h-12 rounded-lg flex items-center justify-center ${f.pill === "free" ? "bg-green-50 text-green-600" : "bg-orange-50 text-[#E8500A]"}`}
-                  >
-                    <f.Icon size={24} />
+              <div className="bg-white/5 border-2 border-[#41b3ff57] rounded p-8 h-full hover:border-[#E8500A]/30 transition-all group flex flex-col justify-between">
+                <div>
+                  {" "}
+                  <div className="flex justify-between items-start mb-8">
+                    <div
+                      className={`w-12 h-12 rounded-lg flex items-center justify-center ${f.pill === "free" ? "bg-orange-600 text-green-50" : "bg-transparent text-[#E8500A]"}`}
+                    >
+                      <f.Icon size={24} />
+                    </div>
+                    <span
+                      className={`text-xs font-bold px-4 py-1 rounded ${f.pill === "free" ? "bg-green-800 text-green-50" : "bg-yellow-500 text-[#11100f]"}`}
+                    >
+                      {f.pill.toUpperCase()}
+                    </span>
                   </div>
-                  <span
-                    className={`text-xs font-bold px-4 py-1 rounded ${f.pill === "free" ? "bg-green-100 text-green-700" : "bg-orange-100 text-[#E8500A]"}`}
-                  >
-                    {f.pill.toUpperCase()}
-                  </span>
+                  <h3 className="text-xl font-semibold text-white mb-3">
+                    {f.title}
+                  </h3>
+                  <p className="text-gray-50 line-clamp-3 text-[15px] leading-relaxed mb-6">
+                    {f.desc}
+                  </p>
                 </div>
-
-                <h3 className="text-xl font-semibold text-black mb-3">
-                  {f.title}
-                </h3>
-                <p className="text-gray-600 text-[15px] leading-relaxed mb-6">
-                  {f.desc}
-                </p>
-
                 <div className="flex flex-wrap gap-2">
                   {f.tags.map((tag, j) => (
                     <span
                       key={j}
-                      className="text-xs bg-gray-100 text-gray-600 px-3 py-1 rounded"
+                      className="text-xs bg-gray-800/40 text-orange-600 px-3 py-1 rounded"
                     >
                       {tag}
                     </span>
@@ -451,6 +445,7 @@ export default function NMTLabsLanding() {
         <Hero />
         <Ideology />
         <WhatWeDo />
+        <Tracks />
         {/* Add remaining sections here: Tracks, Community, Pricing, Support, Contact */}
         {/* I can provide them immediately if needed */}
       </div>

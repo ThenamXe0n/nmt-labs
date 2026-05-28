@@ -138,7 +138,7 @@ const ReactMasteryLandingSection = () => {
 
             {/* Link button — bg and shadow are dynamic so kept as inline style */}
             <Link
-              to={task.path}
+              href={task.path}
               className="mt-6 inline-flex items-center gap-2 no-underline text-white px-6 py-3 rounded-xl text-sm font-semibold transition-transform duration-200 hover:scale-[1.02]"
               style={{
                 background: task.color,
